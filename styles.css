@@ -1,0 +1,57 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    min-height: 100vh;
+}
+header {
+    background-color: #ffffff;
+    color: #134383;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+main {
+    padding: 2rem;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+.card {
+    background-color: #dadada83;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 1rem;
+    width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+.card h2 {
+    margin: 0.5rem 0;
+}
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card a {
+    color: inherit; /* Mantiene el color original */
+    text-decoration: none; /* Elimina la subrayado */
+}
+
+.card a:hover {
+    color: inherit; /* Evita que cambie el color al pasar el mouse */
+    text-decoration: none; /* Evita el subrayado al pasar el mouse */
+}
