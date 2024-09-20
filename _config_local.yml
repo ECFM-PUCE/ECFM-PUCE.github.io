@@ -1,5 +1,5 @@
 title: "Escuela de Ciencias Físicas y Matemática"
 description: "Repositorio de Material Educativo"
 
-baseurl: "https://ECFM-PUCE.github.io"
-url: "https://ECFM-PUCE.github.io"
+baseurl: ""
+# bundle exec jekyll serve --config _config_local.yml
