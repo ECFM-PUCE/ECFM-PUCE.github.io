@@ -47,6 +47,13 @@ main {
 
 .card h2 {
     margin: 0.5rem 0;
+    color: #134383;
+}
+
+.card h5 {
+    margin: 0.5rem 0;
+    color: #134383;
+    font-weight: bold; 
 }
 
 .card p {
@@ -56,33 +63,47 @@ main {
 
 .card a {
     color: inherit;
-    /* Mantiene el color original */
     text-decoration: none;
-    /* Elimina la subrayado */
 }
 
 .card a:hover {
     color: inherit;
-    /* Evita que cambie el color al pasar el mouse */
     text-decoration: none;
-    /* Evita el subrayado al pasar el mouse */
 }
 
 .container-material {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .item {
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     text-align: center;
+    width: 300px;
 }
+
+.item p {
+    color: #666;
+}
+
+.container-material a:hover {
+    text-decoration: none;
+}
+
 .item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+h2 {
+    color: #134383;
+    text-align: center;
+    font-weight: bold; 
+    margin-bottom: 1.5rem;
 }
