@@ -1,0 +1,9 @@
+# Archivos generados por Jekyll
+_site/
+
+# Dependencias de Ruby
+Gemfile.lock
+
+# Archivos de configuración de editores de código (opcional)
+.vscode/
+
