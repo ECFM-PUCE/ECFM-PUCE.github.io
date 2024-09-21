@@ -30,7 +30,7 @@ main {
     background-color: #dadada83;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    padding: 0.5rem;
     width: 300px;
     text-align: center;
     transition: transform 0.3s ease;
@@ -106,4 +106,59 @@ h2 {
     text-align: center;
     font-weight: bold; 
     margin-bottom: 1.5rem;
+}
+
+
+.card-doc {
+    background-color: #dadada83;
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 250px;
+    height: 250px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card-doc h5 {
+    color: #134383;
+    font-weight: bold; 
+}
+
+.card-doc-back li {
+    color: #666;
+}
+
+.card-container-doc {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.card-container-doc:hover .card-doc {
+    transform: rotateY(180deg);
+}
+
+.card-doc-front, .card-doc-back {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    backface-visibility: hidden;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card-doc-back {
+    background-color: #f1f1f1;
+    transform: rotateY(180deg);
+    justify-content: left;
+    align-items: left;
+}
+.card-doc-front {
+    background-color: #f1f1f1;
+    text-align: center;
 }

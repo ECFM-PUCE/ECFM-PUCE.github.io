@@ -1,0 +1,43 @@
+---
+layout: page
+title: Matemática II
+---
+
+<h2>Matemática II</h2>
+
+<div class="card-container">
+    <div class="card">
+        <a href="#">
+            <div class="card-body">
+                <h5 class="card-title">En construcción</h5>
+                <img src="/assets/icons/construccion.png" alt="En construcción"  width="150">
+            </div>
+        </a>
+    </div>
+</div>
+
+<p style="margin-top: 20px; font-size: 16px;">
+    Si detectas algún error en este material, por favor repórtalo
+    <a href="#">
+        aquí
+    </a>.
+</p>
+
+<div id="contributors">
+    <h5 style="color: #134383;">Material elaborado por:</h5>
+    <ul id="contributors-list"></ul>
+</div>
+
+<div id="recent-commits">
+    <h5 style="color: #134383;">Últimos cambios implementados:</h5>
+    <ul id="commits-list"></ul>
+</div>
+
+<script>
+    // Repositorio de GitHub (usuario/nombre-del-repositorio)
+    const repoOwner = "ECFM-PUCE";
+    const repoName = "";
+</script>
+
+{% include recent-commits.html %}
+    
