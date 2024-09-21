@@ -113,38 +113,37 @@ h2 {
     background-color: #dadada83;
     border-radius: 8px;
     padding: 0.5rem;
-    width: 250px;
+    width: 240px;
     height: 250px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
     cursor: pointer;
+    position: relative;
 }
 
 .card-doc h5 {
     color: #134383;
-    font-weight: bold; 
-}
-
-.card-doc-back li {
-    color: #666;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .card-container-doc {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.card-container-doc:hover .card-doc {
+.card-doc.flipped {
     transform: rotateY(180deg);
 }
 
 .card-doc-front, .card-doc-back {
     position: absolute;
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 100%;
     backface-visibility: hidden;
+    display: flex;
     flex-direction: column;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -152,13 +151,31 @@ h2 {
     box-sizing: border-box;
 }
 
+.card-doc-front {
+    background-color: #f1f1f1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .card-doc-back {
     background-color: #f1f1f1;
     transform: rotateY(180deg);
-    justify-content: left;
-    align-items: left;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
-.card-doc-front {
-    background-color: #f1f1f1;
-    text-align: center;
+
+.card-doc-front img {
+    margin-top: 10px;
+}
+
+.card-doc-back ul {
+    padding-left: 10px; 
+    margin-top: 1px;
+}
+
+.card-doc-back li {
+    font-size: 0.9em;
+    margin-bottom: 2px;
+    color: #666;
 }
