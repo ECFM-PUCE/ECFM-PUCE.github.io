@@ -1,6 +1,7 @@
 <script>
     // Definir la URL base
     const baseURL = `https://github.com/${repoOwner}/${repoName}/blob/main/`;
+    const baseURLcolab = `https://colab.research.google.com/github/${repoOwner}/${repoName}/blob/main/`;
 
     // URL para obtener la lista de colaboradores
     const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
@@ -102,6 +103,18 @@
         const link = item.getAttribute('data-link'); // Obtener la parte específica de la URL
         const aTag = document.createElement('a'); // Crear el elemento <a>
         aTag.href = baseURL + link; // Combinar la URL base con la parte específica
+        aTag.appendChild(item.cloneNode(true)); // Clonar el contenido del div dentro del enlace
+        item.replaceWith(aTag); // Reemplazar el div con el nuevo <a>
+    });
+
+    // Obtener todos los divs con la clase "item"
+    const itemscolab = document.querySelectorAll('.item-colab');
+
+    // Recorrer cada item y agregar el enlace dinámico
+    itemscolab.forEach(item => {
+        const link = item.getAttribute('data-link'); // Obtener la parte específica de la URL
+        const aTag = document.createElement('a'); // Crear el elemento <a>
+        aTag.href = baseURLcolab + link; // Combinar la URL base con la parte específica
         aTag.appendChild(item.cloneNode(true)); // Clonar el contenido del div dentro del enlace
         item.replaceWith(aTag); // Reemplazar el div con el nuevo <a>
     });
