@@ -1,3 +1,12 @@
+:root {
+    --primary-color: #134383;
+    --secondary-color: #666;
+    --background-color: #f1f1f1;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --box-background: rgba(218, 218, 218, 0.51);
+}
+
 body {
     font-family: "Montserrat", sans-serif;
     line-height: 1.6;
@@ -9,35 +18,36 @@ body {
 
 header {
     background-color: #ffffff;
-    color: #134383;
+    color: var(--primary-color);
     text-align: center;
     padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
 }
 
 main {
     padding: 2rem;
 }
 
-.card-container {
+.card-container, .container-material, .card-container-doc {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.card {
-    background-color: #dadada83;
+.card, .item, .item-colab {
+    background-color: var(--box-background);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     padding: 0.5rem;
-    width: 300px;
+    width: 250px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.card:hover {
+.card:hover, .item:hover, .item-colab:hover {
     transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
 }
 
 .card-icon {
@@ -45,88 +55,35 @@ main {
     margin-bottom: 0.5rem;
 }
 
-.card h2 {
+.card h2, .card h5 {
     margin: 0.5rem 0;
-    color: #134383;
+    color: var(--primary-color);
 }
 
 .card h5 {
-    margin: 0.5rem 0;
-    color: #134383;
     font-weight: bold;
 }
 
-.card p {
+.card p, .item p, .item-colab p {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--secondary-color);
 }
 
-.card a {
+.card a, .container-material a {
     color: inherit;
     text-decoration: none;
 }
 
-.card a:hover {
-    color: inherit;
+.card a:hover, .container-material a:hover {
     text-decoration: none;
-}
-
-.container-material {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.item {
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    width: 300px;
-}
-
-.item p {
-    color: #666;
-}
-
-.container-material a:hover {
-    text-decoration: none;
-}
-
-.item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.item-colab {
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    width: 300px;
-}
-
-.item-colab p {
-    color: #666;
-}
-
-.item-colab:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 h2 {
-    color: #134383;
+    color: var(--primary-color);
     text-align: center;
     font-weight: bold;
     margin-bottom: 1.5rem;
 }
-
 
 .card-doc {
     background-color: #dadada83;
@@ -141,24 +98,17 @@ h2 {
 }
 
 .card-doc h5 {
-    color: #134383;
+    color: var(--primary-color);
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-.card-container-doc {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
 }
 
 .card-doc.flipped {
     transform: rotateY(180deg);
 }
 
-.card-doc-front,
-.card-doc-back {
+.card-doc-front, .card-doc-back {
+    background-color: var(--background-color);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -172,14 +122,12 @@ h2 {
 }
 
 .card-doc-front {
-    background-color: #f1f1f1;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
 .card-doc-back {
-    background-color: #f1f1f1;
     transform: rotateY(180deg);
     justify-content: flex-start;
     align-items: flex-start;
@@ -197,9 +145,8 @@ h2 {
 .card-doc-back li {
     font-size: 0.9em;
     margin-bottom: 2px;
-    color: #666;
+    color: var(--secondary-color);
 }
-
 
 .card-doc-front:hover {
     transform: translateY(-7px);
