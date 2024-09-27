@@ -7,3 +7,6 @@ Gemfile.lock
 # Archivos de configuración de editores de código (opcional)
 .vscode/
 
+# Diseños de páginas web
+diseños/
+

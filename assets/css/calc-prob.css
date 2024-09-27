@@ -1,0 +1,174 @@
+/* Tabla de formulario */
+.form-table {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-table table {
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+.form-table td {
+    padding: 5px;
+    text-align: right;
+    border: none;
+}
+
+.form-table tr.selected,
+.form-table tbody tr:nth-child(even),
+.form-table tbody tr:nth-child(odd),
+.form-table tbody tr:hover {
+    background-color: transparent;
+}
+
+/* Gráfico */
+#Plot {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    #Plot {
+        width: 100%;
+    }
+}
+
+/* Momentos */
+#mom {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+/* Input de tipo number */
+input[type="number"] {
+    width: 80px;
+}
+
+/* Botones */
+button {
+    border-radius: 5px;
+    background-color: var(--box-background);
+    border: solid 1px var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--hover-shadow);
+}
+
+/* Centrar los botones */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los botones */
+    margin: 20px 0;
+}
+
+#flip {
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Estilos de paneles */
+#helpPanel,
+#masPanel {
+    display: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--box-background);
+    border: solid 1px var(--primary-color);
+    box-shadow: var(--box-shadow);
+}
+
+/* Tablas */
+table {
+    margin: 0 auto;
+    width: auto;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+th,
+td {
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: var(--box-background);
+}
+
+/* Estilos para las pestañas */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: var(--background-color);
+}
+
+/* Estilos para los botones de las pestañas */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    /* background-color: var(--background-color); */
+}
+
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Cambiar el color del botón al pasar el mouse */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Cambiar el color del botón activo */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Ocultar el contenido de las pestañas por defecto */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Mostrar el contenido activo */
+.tabcontent.active {
+    display: block;
+}
+
+/* Estilo para los <h4> dentro del footer */
+h4 {
+    color: var(--primary-color);
+}
