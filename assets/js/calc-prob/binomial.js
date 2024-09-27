@@ -117,13 +117,13 @@ function updatePlot() {
     {
         backgroundColor: 'transparent',
         hAxis: {
-            title: 'x', titleTextStyle: { color: '#2a4861' },
+            title: 'x', titleTextStyle: { color: '#134383' },
             gridlines: { color: 'transparent' },
             viewWindow: { min: xlo - 0.5, max: xhi },
             baselineColor: 'transparent'
         },
         vAxis: {
-            title: 'P(X=x)', titleTextStyle: { color: '#2a4861' },
+            title: 'P(X=x)', titleTextStyle: { color: '#134383' },
             gridlines: { count: 5, color: 'transparent' },
             viewWindow: { min: 0 },
             viewWindowMode: 'explicit'
@@ -131,7 +131,7 @@ function updatePlot() {
         legend: { position: 'none' },
         seriesType: "bars",
         isStacked: true,
-        colors: ['#2a4861', '#419693']
+        colors: ['#134383', '#137b83']
     };
 
     var chart = new google.visualization.ComboChart(document.getElementById('Plot'));
