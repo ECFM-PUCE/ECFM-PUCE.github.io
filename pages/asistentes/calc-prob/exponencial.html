@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Calculadora Binomial
+title: Calculadora Exponencial
 ---
 
 <!-- Carga MathJax -->
@@ -10,31 +10,27 @@ title: Calculadora Binomial
 <!-- Carga el archivo CSS personalizado -->
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/calc-prob.css">
 
-<h2>Calculadora de Distribución Binomial<br>
-    \( X \sim \text{Bin}(n,p) \)</h2>
+
+<h2>Calculadora de Distribución Exponencial<br>
+    \( X \sim \text{Exp}(\lambda) \)</h2>
 
 <form>
     <table class="form-table">
         <tbody>
             <tr>
-                <td title="Número de ensayos">\(n =\)</td>
-                <td><input type="number" name="n" value="" min="1" onchange="validateN(); updateProb(); updatePlot()">
+                <td>\(\lambda =\)</td>
+                <td><input type="number" name="l" value="" min="0" step="0.1" onchange="validateL(); updateProb();">
                 </td>
-
-                <td title="Probabilidad de éxito">\(p =\)</td>
-                <td><input type="number" name="p" value="" min="0" max="1" step="0.05"
-                        onchange="validateP(); updateProb(); updatePlot()"></td>
             </tr>
 
             <tr>
-                <td title="Número de éxitos">\(x =\)</td>
-                <td><input type="number" name="x" size="4" min="0" value=""
-                        onchange="validateX(); updateProb(); updatePlot()"></td>
+                <td>\(x =\)</td>
+                <td><input type="number" name="x" value="" min="0" step="0.1" onchange="validateX(); updateProb();">
+                </td>
 
                 <td>
                     <div id="mydropdowndiv">
-                        <select name="mydropdown" onchange="updateProb(); updatePlot()">
-                            <option value="eq">P(X = x)  =</option>
+                        <select name="mydropdown" onchange="updateProb();">
                             <option value="le">P(X ≤ x)  =</option>
                             <option value="ge">P(X ≥ x)  =</option>
                         </select>
@@ -42,7 +38,7 @@ title: Calculadora Binomial
                 </td>
                 <td>
                     <div id="probdiv">
-                        <input type="number" name="prob" size="4" value="">
+                        <input type="number" name="prob" value="">
                     </div>
                 </td>
             </tr>
@@ -71,20 +67,21 @@ title: Calculadora Binomial
 <div id="helpPanel">
     <h4>Instrucciones</h4>
     <ul>
-        <li>Ingrese el número de ensayos en el campo correspondiente a \(n\).</li>
-        <li>Ingrese la probabilidad de éxito en el campo correspondiente a \(p\).</li>
-        <li>Ingrese el número de éxitos en el campo correspondiente a \(x\).</li>
-        <li>Seleccione el tipo de probabilidad que desea calcular en el menú desplegable.</li>
+        <li>Ingrese el valor de \(\lambda\) en el campo correspondiente.</li>
     </ul>
-
-    <h4>Fórmulas</h4>
+    <p> Para calcular una probabilidad acumulada, seleccione \(P(X \leq x)\) en el menú desplegable, ingrese un valor
+        para
+        \(x\) y presione "Enter" en su teclado. La probabilidad \(P(X \leq x)\) se mostrará automáticamente. Si desea
+        calcular una probabilidad complementaria, seleccione \(P(X > x)\) en el menú desplegable. </p>
+    <h4>Detalles</h4>
     <ul>
-        <li style="margin-bottom: 0px;">La función de probabilidad es \(\displaystyle f(x) = P(X = x) = \binom{n}{x} p^x
-            (1 - p)^{n - x}\), para \(x = 0, 1, \dots, n\).</li>
-        <li style="margin-bottom: 10px;">El valor esperado es \(\mu = E(X) = np\).</li>
-        <li style="margin-bottom: 10px;">La varianza es \(\sigma^2 = \text{Var}(X) = np(1 - p)\).</li>
-        <li style="margin-bottom: 10px;">La desviación estándar es \(\sigma = \sqrt{\text{Var}(X)} = \sqrt{np(1 - p)}\).
-        </li>
+        <li style="margin-bottom: 10px;"> La función de densidad es \(\displaystyle f(x) = P(X\leq x) = \lambda
+            e^{-\lambda x}\), para
+            \(x \geq 0\). </li>
+        <li style="margin-bottom: 10px;"> El valor esperado es \(\mu = E(X) = \frac{1}{\lambda}\). </li>
+        <li style="margin-bottom: 10px;"> La varianza es \(\sigma^2 = \text{Var}(X) = \frac{1}{\lambda^2}\). </li>
+        <li style="margin-bottom: 10px;"> La desviación estándar es \(\sigma = \sqrt{\text{Var}(X)} =
+            \frac{1}{\lambda}\). </li>
     </ul>
 </div>
 
@@ -106,7 +103,7 @@ title: Calculadora Binomial
 
 
 <!-- Carga de scripts -->
-<script type="text/javascript" src="{{ site.baseurl }}/assets/js/calc-prob/binomial.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/assets/js/calc-prob/exponencial.js"></script>
 
 <!-- Carga Google Charts para gráficos -->
 <script type="text/javascript">

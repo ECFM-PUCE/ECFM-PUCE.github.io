@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Calculadora Binomial
+title: Calculadora Poisson
 ---
 
 <!-- Carga MathJax -->
@@ -10,26 +10,22 @@ title: Calculadora Binomial
 <!-- Carga el archivo CSS personalizado -->
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/calc-prob.css">
 
-<h2>Calculadora de Distribución Binomial<br>
-    \( X \sim \text{Bin}(n,p) \)</h2>
+<h2>Calculadora de Distribución de Poisson<br>
+    \( X \sim \text{Pois}(\lambda) \)</h2>
 
 <form>
     <table class="form-table">
         <tbody>
             <tr>
-                <td title="Número de ensayos">\(n =\)</td>
-                <td><input type="number" name="n" value="" min="1" onchange="validateN(); updateProb(); updatePlot()">
-                </td>
-
-                <td title="Probabilidad de éxito">\(p =\)</td>
-                <td><input type="number" name="p" value="" min="0" max="1" step="0.05"
-                        onchange="validateP(); updateProb(); updatePlot()"></td>
+                <td>\(\lambda =\)</td>
+                <td><input type="number" name="l" value="" min="0" step="0.1"
+                        onchange="validateL(); updateProb(); updatePlot()"></td>
             </tr>
 
             <tr>
-                <td title="Número de éxitos">\(x =\)</td>
-                <td><input type="number" name="x" size="4" min="0" value=""
-                        onchange="validateX(); updateProb(); updatePlot()"></td>
+                <td>\(x =\)</td>
+                <td><input type="number" name="x" value="" min="0" onchange="validateX(); updateProb(); updatePlot()">
+                </td>
 
                 <td>
                     <div id="mydropdowndiv">
@@ -42,7 +38,7 @@ title: Calculadora Binomial
                 </td>
                 <td>
                     <div id="probdiv">
-                        <input type="number" name="prob" size="4" value="">
+                        <input type="number" name="prob" value="">
                     </div>
                 </td>
             </tr>
@@ -71,19 +67,17 @@ title: Calculadora Binomial
 <div id="helpPanel">
     <h4>Instrucciones</h4>
     <ul>
-        <li>Ingrese el número de ensayos en el campo correspondiente a \(n\).</li>
-        <li>Ingrese la probabilidad de éxito en el campo correspondiente a \(p\).</li>
-        <li>Ingrese el número de éxitos en el campo correspondiente a \(x\).</li>
+        <li>Ingrese el valor de \(\lambda\) en el campo correspondiente.</li>
+        <li>Ingrese el valor de \(x\) en el campo correspondiente.</li>
         <li>Seleccione el tipo de probabilidad que desea calcular en el menú desplegable.</li>
     </ul>
-
     <h4>Fórmulas</h4>
     <ul>
-        <li style="margin-bottom: 0px;">La función de probabilidad es \(\displaystyle f(x) = P(X = x) = \binom{n}{x} p^x
-            (1 - p)^{n - x}\), para \(x = 0, 1, \dots, n\).</li>
-        <li style="margin-bottom: 10px;">El valor esperado es \(\mu = E(X) = np\).</li>
-        <li style="margin-bottom: 10px;">La varianza es \(\sigma^2 = \text{Var}(X) = np(1 - p)\).</li>
-        <li style="margin-bottom: 10px;">La desviación estándar es \(\sigma = \sqrt{\text{Var}(X)} = \sqrt{np(1 - p)}\).
+        <li style="margin-bottom: 0px;"> La función de probabilidad es \(\displaystyle f(x) = P(X = x) =
+            \frac{e^{-\lambda} \lambda^x}{x!}\), para \(x = 0, 1, 2, \ldots\). </li>
+        <li style="margin-bottom: 10px;"> El valor esperado es \(\mu = E(X) = \lambda\). </li>
+        <li style="margin-bottom: 10px;"> La varianza es \(\sigma^2 = \text{Var}(X) = \lambda\). </li>
+        <li style="margin-bottom: 10px;"> La desviación estándar es \(\sigma = \sqrt{\text{Var}(X)} = \sqrt{\lambda}\).
         </li>
     </ul>
 </div>
@@ -106,7 +100,7 @@ title: Calculadora Binomial
 
 
 <!-- Carga de scripts -->
-<script type="text/javascript" src="{{ site.baseurl }}/assets/js/calc-prob/binomial.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/assets/js/calc-prob/poisson.js"></script>
 
 <!-- Carga Google Charts para gráficos -->
 <script type="text/javascript">
