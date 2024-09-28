@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Calculadora Exponencial
+title: Calculadora Normal
 ---
 
 <!-- Carga MathJax -->
@@ -11,21 +11,24 @@ title: Calculadora Exponencial
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/calc-prob.css">
 
 
-<h2>Calculadora de Distribución Exponencial<br>
-    \( X \sim \text{Exp}(\lambda) \)</h2>
+<h2>Calculadora de Distribución Normal<br>
+    \( X \sim N(\mu, \sigma^2) \)</h2>
 
 <form>
     <table class="form-table">
         <tbody>
             <tr>
-                <td>\(\lambda =\)</td>
-                <td><input type="number" name="l" value="" min="0.1" step="0.1" onchange="validateL(); updateProb(); updateX(); updatePlot();">
+                <td>\(\mu =\)</td>
+                <td><input type="number" name="mu" value="0" step="0.1" onchange="validateMu(); updateProb(); updateX(); updatePlot();">
+                </td>
+
+                <td>\(\sigma =\)</td>
+                <td><input type="number" name="sigma" value="1" min="0.1" step="0.1" onchange="validateSigma(); updateProb(); updateX(); updatePlot();">
                 </td>
             </tr>
-
             <tr>
                 <td>\(x =\)</td>
-                <td><input type="number" name="x" value="" min="0" step="0.1" onchange="validateX(); updateProb(); updatePlot();">
+                <td><input type="number" name="x" value="" step="0.1" onchange="validateX(); updateProb(); updatePlot();">
                 </td>
 
                 <td>
@@ -38,7 +41,7 @@ title: Calculadora Exponencial
                 </td>
                 <td>
                     <div id="probdiv">
-                        <input type="number" name="prob" value="" min="0" step="0.01"  onchange="validateProb(); updateX(); updatePlot();">
+                        <input type="number" name="prob" value="" min="0" step="0.01" onchange="validateProb(); updateX(); updatePlot();">
                     </div>
                 </td>
             </tr>
@@ -67,21 +70,15 @@ title: Calculadora Exponencial
 <div id="helpPanel">
     <h4>Instrucciones</h4>
     <ul>
-        <li>Ingrese el valor de \(\lambda\) en el campo correspondiente.</li>
+        <li>Ingrese el valor de \(\mu\) y \(\sigma\) en los campos correspondientes.</li>
     </ul>
-    <p> Para calcular una probabilidad acumulada, seleccione \(P(X \leq x)\) en el menú desplegable, ingrese un valor
-        para
-        \(x\) y presione "Enter" en su teclado. La probabilidad \(P(X \leq x)\) se mostrará automáticamente. Si desea
-        calcular una probabilidad complementaria, seleccione \(P(X \geq x)\) en el menú desplegable. </p>
+    <p> Para calcular una probabilidad acumulada, seleccione \(P(X \leq x)\) en el menú desplegable, ingrese un valor para \(x\) y presione "Enter" en su teclado. La probabilidad \(P(X \leq x)\) se mostrará automáticamente. Si desea calcular una probabilidad complementaria, seleccione \(P(X \geq x)\) en el menú desplegable. </p>
     <h4>Detalles</h4>
     <ul>
-        <li style="margin-bottom: 10px;"> La función de densidad es \(\displaystyle f(x) = P(X\leq x) = \lambda
-            e^{-\lambda x}\), para
-            \(x \geq 0\). </li>
-        <li style="margin-bottom: 10px;"> El valor esperado es \(\mu = E(X) = \frac{1}{\lambda}\). </li>
-        <li style="margin-bottom: 10px;"> La varianza es \(\sigma^2 = \text{Var}(X) = \frac{1}{\lambda^2}\). </li>
-        <li style="margin-bottom: 10px;"> La desviación estándar es \(\sigma = \sqrt{\text{Var}(X)} =
-            \frac{1}{\lambda}\). </li>
+        <li style="margin-bottom: 10px;"> La función de densidad es \(\displaystyle f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\). </li>
+        <li style="margin-bottom: 10px;"> El valor esperado es \(\mu\). </li>
+        <li style="margin-bottom: 10px;"> La varianza es \(\sigma^2\). </li>
+        <li style="margin-bottom: 10px;"> La desviación estándar es \(\sigma\). </li>
     </ul>
 </div>
 
@@ -90,9 +87,8 @@ title: Calculadora Exponencial
 
 </div>
 
-
 <!-- Carga de scripts -->
-<script type="text/javascript" src="{{ site.baseurl }}/assets/js/calc-prob/exponencial.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/assets/js/calc-prob/normal.js"></script>
 
 <!-- Carga Google Charts para gráficos -->
 <script type="text/javascript">
