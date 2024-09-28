@@ -43,7 +43,6 @@ main {
     width: 250px;
     text-align: center;
     transition: all 0.3s ease;
-    padding-top: 0rem;
 }
 
 .card:hover, .item:hover, .item-colab:hover {
@@ -58,6 +57,7 @@ main {
 
 .card h2, .card h5 {
     margin-bottom: 0.5rem;
+    margin-top: 0rem;
     color: var(--primary-color);
 }
 
@@ -68,6 +68,10 @@ main {
 .card p, .item p, .item-colab p {
     font-size: 0.9rem;
     color: var(--secondary-color);
+}
+
+.item-colab img {
+    margin-top: -15px;
 }
 
 .card a, .container-material a {
