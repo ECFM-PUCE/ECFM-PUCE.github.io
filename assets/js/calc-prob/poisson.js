@@ -66,6 +66,7 @@ function updatePlot() {
     if (isNaN(l) || l <= 0) {
         return;
     }
+    
 
     let mean = l;
     let sd = Math.sqrt(l);
