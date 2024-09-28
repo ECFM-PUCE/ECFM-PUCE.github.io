@@ -39,10 +39,11 @@ main {
     background-color: var(--box-background);
     border-radius: 8px;
     box-shadow: var(--box-shadow);
-    padding: 0.5rem;
+    padding: 0.2rem;
     width: 250px;
     text-align: center;
     transition: all 0.3s ease;
+    padding-top: 0rem;
 }
 
 .card:hover, .item:hover, .item-colab:hover {
@@ -56,7 +57,7 @@ main {
 }
 
 .card h2, .card h5 {
-    margin: 0.5rem 0;
+    margin-bottom: 0.5rem;
     color: var(--primary-color);
 }
 
@@ -134,7 +135,7 @@ h2 {
 }
 
 .card-doc-front img {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .card-doc-back ul {
@@ -146,6 +147,15 @@ h2 {
     font-size: 0.9em;
     margin-bottom: 2px;
     color: var(--secondary-color);
+}
+
+.card-doc-back img {
+    margin-right: 10px;
+}
+
+.card-doc-back a {
+    color: inherit;
+    text-decoration: none;
 }
 
 .card-doc-front:hover {
