@@ -19,18 +19,18 @@ title: Calculadora Exponencial
         <tbody>
             <tr>
                 <td>\(\lambda =\)</td>
-                <td><input type="number" name="l" value="" min="0.1" step="0.1" onchange="validateL(); updateProb(); updatePlot();">
+                <td><input type="number" name="l" value="" min="0.1" step="0.1" onchange="validateL(); updateProb(); updateX(); updatePlot();">
                 </td>
             </tr>
 
             <tr>
                 <td>\(x =\)</td>
-                <td><input type="number" name="x" value="" min="0" step="0.1" onchange="validateX(); updateProb();">
+                <td><input type="number" name="x" value="" min="0" step="0.1" onchange="validateX(); updateProb(); updatePlot();">
                 </td>
 
                 <td>
                     <div id="mydropdowndiv">
-                        <select name="mydropdown" onchange="updateProb();">
+                        <select name="mydropdown" onchange="updateProb(); updatePlot();">
                             <option value="le">P(X ≤ x)  =</option>
                             <option value="ge">P(X ≥ x)  =</option>
                         </select>
@@ -38,7 +38,7 @@ title: Calculadora Exponencial
                 </td>
                 <td>
                     <div id="probdiv">
-                        <input type="number" name="prob" value="">
+                        <input type="number" name="prob" value="" min="0" step="0.05"  onchange="validateProb(); updateX(); updatePlot();">
                     </div>
                 </td>
             </tr>
@@ -72,7 +72,7 @@ title: Calculadora Exponencial
     <p> Para calcular una probabilidad acumulada, seleccione \(P(X \leq x)\) en el menú desplegable, ingrese un valor
         para
         \(x\) y presione "Enter" en su teclado. La probabilidad \(P(X \leq x)\) se mostrará automáticamente. Si desea
-        calcular una probabilidad complementaria, seleccione \(P(X > x)\) en el menú desplegable. </p>
+        calcular una probabilidad complementaria, seleccione \(P(X \geq x)\) en el menú desplegable. </p>
     <h4>Detalles</h4>
     <ul>
         <li style="margin-bottom: 10px;"> La función de densidad es \(\displaystyle f(x) = P(X\leq x) = \lambda
@@ -87,18 +87,7 @@ title: Calculadora Exponencial
 
 <!-- Panel de tabla de probabilidades -->
 <div id="masPanel" style="display: none;">
-    <h4>Tabla de Probabilidades</h4>
-    <table class="prob-table">
-        <thead>
-            <tr>
-                <th>\(x\)</th>
-                <th>\(P(X = x)\)</th>
-            </tr>
-        </thead>
-        <tbody id="probabilities-body">
-            <!-- Aquí se insertarán las filas de probabilidades dinámicamente -->
-        </tbody>
-    </table>
+
 </div>
 
 

@@ -10,7 +10,7 @@ function validateL() {
 
 function validateX() {
     const x = parseFloat(document.forms[0].x.value);
-    if (x <= 0 || isNaN(x)) {
+    if (x < 0 || isNaN(x)) {
         alert('Error: El valor de x debe ser mayor a 0.');
         document.forms[0].x.value = '';
     } else {
@@ -18,8 +18,14 @@ function validateX() {
     }
 }
 
-function exponencialDcf(l, x) {
-    return 1 - Math.exp(-l * x);
+function validateProb() {
+    const prob = parseFloat(document.forms[0].prob.value);
+    if (prob < 0 || prob > 1 || isNaN(prob)) {
+        alert('Error: El valor de la probabilidad debe estar entre 0 y 1.');
+        document.forms[0].prob.value = '';
+    } else {
+        document.forms[0].prob.value = prob;
+    }
 }
 
 function updateProb() {
@@ -34,46 +40,69 @@ function updateProb() {
 
     let prob = 0;
     if (dropdownValue === 'le') {
-        prob = exponencialDcf(l, x);
+        prob = exponentialCdf(l, x);
     } else if (dropdownValue === 'ge') {
-        prob = 1 - exponencialDcf(l, x);
+        prob = 1 - exponentialCdf(l, x);
     }
 
     document.forms[0].prob.value = prob.toFixed(5);
 }
 
-function percentile(p,l)
-	{
-		p = eval(p);
-
-		if(!isNaN(p)) return -Math.log(1-p)/l;
-
-		return '';
-	}
-
-
-function updatePlot() {
+function updateX() {
     const l = parseFloat(document.forms[0].l.value);
-    const x = parseFloat(document.forms[0].x.value);
+    const prob = parseFloat(document.forms[0].prob.value);
 
-    if (isNaN(l) || l <= 0) {
+    if (isNaN(l) || isNaN(prob) || l <= 0 || prob < 0 || prob > 1) {
         return;
     }
 
-    let mean = 1 / l;
-    let sd = 1 / l;
+    const dropdownValue = document.forms[0].mydropdown.value;
+
+    let x = 0;
+    if (dropdownValue === 'le') {
+        x = -Math.log(1 - prob) / l;
+    } else if (dropdownValue === 'ge') {
+        x = -Math.log(prob) / l;
+    }
+
+    document.forms[0].x.value = x.toFixed(5);
+}
+
+function percentile(p, l) {
+    p = eval(p);
+
+    if (!isNaN(p)) return -Math.log(1 - p) / l;
+
+    return '';
+}
+
+function exponentialCdf(lambda, x) {
+    return 1 - Math.exp(-lambda * x);
+}
+
+function exponentialPdf(lambda, x) {
+    return lambda * Math.exp(-lambda * x);
+}
+
+function updatePlot() {
+    const lambda = parseFloat(document.forms[0].l.value);
+    const x = parseFloat(document.forms[0].x.value);
+
+    if (isNaN(lambda) || lambda <= 0) {
+        return;
+    }
+
+    let mean = 1 / lambda;
+    let sd = 1 / lambda;
 
     var data = new google.visualization.DataTable();
 
     data.addColumn('number', 'x');
     data.addColumn('number', 'f(x)');
     data.addColumn('number', 'f(x)');
-    data.addColumn('number', 'f(x)');
-
-    // x = eval(x);
 
     var lo = 0;
-    var hi = percentile(0.999,l);
+    var hi = percentile(0.999, lambda);
 
     data.addRows(401);
 
@@ -83,51 +112,53 @@ function updatePlot() {
     for (i = 0; i < 401; i++) {
         grd = lo + (hi - lo) * i / 400;
         data.setCell(i, 0, grd);
-        data.setCell(i, 1, exponencialDcf(grd));
-
-        if (!isNaN(x)) {
-            if (grd < x) {
-                if (dropdownValue == 'le')
-                    data.setCell(i, 2, exponencialDcf(grd));
-            }
-            else {
-                if (dropdownValue == 'ge')
-                    data.setCell(i, 2, exponencialDcf(grd));
+        data.setCell(i, 1, exponentialPdf(lambda, grd));
+        if(!isNaN(x)) {
+            if(grd < x) {
+                if(dropdownValue === 'le') {
+                    data.setCell(i, 2, exponentialPdf(lambda, grd));
+                } 
+            } else {
+                if(dropdownValue === 'ge') {
+                    data.setCell(i, 2, exponentialPdf(lambda, grd));
+                } 
             }
         }
 
-        var xdelta = (hi - lo) / 140;
-        if (grd > x - xdelta && grd < x + xdelta) {
-            data.setCell(i, 3, exponencialDcf(grd));
-        }
-    }
+    };
 
     var options = {
         backgroundColor: 'transparent',
         areaOpacity: 0,
         hAxis: {
-            title: 'x', titleTextStyle: { color: '#000000' },
+            title: 'x', titleTextStyle: { color: '#134383' },
             min: lo,
             max: hi,
             gridlines: { color: 'transparent', count: 7 },
             baseline: lo
         },
         vAxis: {
-            title: 'f(x)', titleTextStyle: { color: '#000000' },
+            title: 'f(x)', titleTextStyle: { color: '#134383' },
             gridlines: { count: 5, color: 'transparent' },
             viewWindow: { min: 0 },
             viewWindowMode: 'explicit'
         },
         legend: { position: 'none' },
         series: {
-            0: { color: 'black', areaOpacity: 0, lineWidth: 1.2 },
-            1: { color: '#e7b0b0', areaOpacity: 1, lineWidth: 0 },
-            2: { color: '#83aaf1', areaOpacity: 1, lineWidth: 0 },
-            3: { color: '#E8E8E8', areaOpacity: 1, lineWidth: 0 }
+            0: { color: '#134383', areaOpacity: 0.2, lineWidth: 1.2 },
+            1: { color: '#137b83', areaOpacity: 0.8, lineWidth: 0 }
         },
         tooltip: { trigger: 'none' }
     };
 
-    var chart = new google.visualization.ComboChart(document.getElementById('Plot'));
+    var chart = new google.visualization.AreaChart(document.getElementById('Plot'));
     chart.draw(data, options);
+
+    var txt = "";
+    txt += '\\( \\mu = E(X) = ' + mean.toFixed(3) + ';\\hspace{0.5cm}\\)';
+    txt += '\\( \\sigma = ' + sd.toFixed(3) + ';\\hspace{0.5cm}\\)';
+    txt += '\\( \\sigma^2 = \\text{Var}(X) = ' + Math.pow(sd, 2).toFixed(3) + '.\\)';
+
+    document.getElementById("moments").innerHTML = txt;
+    MathJax.typesetPromise(["#moments"]);
 }
